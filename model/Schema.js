@@ -1,15 +1,11 @@
 import mongoose from 'mongoose';
-// import autoIncrement from 'mongoose-auto-increment';
 
-// how our document look like
+// lostPet Form Data Schema
 const lostPetSchema = mongoose.Schema({
     petName: { type: String, required: true },
     animalType: { type: String, required: true },
-    breed: String,
     age: String,
-    weight: String,
     colors: { type: String, required: true },
-    distinctiveFeatures: String,
     gender: { type: String, required: true },
     ownerName: { type: String, required: true },
     contactPhone: { type: String, required: true },
@@ -17,9 +13,10 @@ const lostPetSchema = mongoose.Schema({
     lastSeenLocation: { type: String, required: true },
     lostDate: { type: String, required: true },
     description: { type: String, required: true },
-    petPicture: { type: String }
+    petPicture: { type: String, required: true },
 });
 
+// foundPet Form Data Schema
 const foundPetSchema = mongoose.Schema({
     animalType: { type: String, required: true },
     breed: String,
@@ -34,6 +31,7 @@ const foundPetSchema = mongoose.Schema({
     description: { type: String, required: true },
 });
 
+// Adoption Post Form Data Schema
 const adoptionSchema = mongoose.Schema({
     animalCode: { type: String, required: true },
     animalName: { type: String, required: true },
@@ -47,9 +45,7 @@ const adoptionSchema = mongoose.Schema({
     experience: { type: String, required: true },
 });
 
-// autoIncrement.initialize(mongoose.connection);
-// lostPetSchema.plugin(autoIncrement.plugin, 'lostPet');
-// we need to turn it into a model
+// Schema to model
 export const PostLostPet = mongoose.model('lostPet', lostPetSchema);
 export const PostFoundPet = mongoose.model('foundPet', foundPetSchema);
 export const AdoptionApplication = mongoose.model('adoption', adoptionSchema);
