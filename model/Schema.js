@@ -21,7 +21,6 @@ const foundPetSchema = mongoose.Schema({
     animalType: { type: String, required: true },
     breed: String,
     colors: { type: String, required: true },
-    distinctiveFeatures: String,
     gender: { type: String, required: true },
     founderName: { type: String, required: true },
     contactPhone: { type: String, required: true },
@@ -29,6 +28,7 @@ const foundPetSchema = mongoose.Schema({
     foundLocation: { type: String, required: true },
     foundDate: { type: String, required: true },
     description: { type: String, required: true },
+    petPicture: { type: String, required: true },
 });
 
 // Adoption Post Form Data Schema
