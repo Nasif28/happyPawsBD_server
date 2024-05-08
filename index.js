@@ -16,8 +16,8 @@ app.use(cors(
     {
         origin: 'https://happypawsbd.vercel.app', // Allow requests from this origin
         methods: ['GET', 'POST'],      // Allow only specified HTTP methods
-        credentials: true
-        // allowedHeaders: ['Content-Type'], // Allow only specified headers
+        credentials: true,
+        allowedHeaders: ['application/json'], // Allow only specified headers
     }
 ));
 
