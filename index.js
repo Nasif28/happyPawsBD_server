@@ -14,7 +14,7 @@ app.use(bodyParser.json({ limit: '5mb' }));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors(
     {
-        origin: 'https://happypawsbd-server.vercel.app', // Allow requests from this origin
+        origin: 'https://happypawsbd.vercel.app', // Allow requests from this origin
         methods: ['GET', 'POST'],      // Allow only specified HTTP methods
         credentials: true
         // allowedHeaders: ['Content-Type'], // Allow only specified headers
