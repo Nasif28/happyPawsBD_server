@@ -12,7 +12,14 @@ dotenv.config();
 // app.use(bodyParser.json({ extended: true }));
 app.use(bodyParser.json({ limit: '5mb' }));
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cors());
+app.use(cors(
+    {
+        origin: 'https://happypawsbd-server.vercel.app', // Allow requests from this origin
+        methods: ['GET', 'POST'],      // Allow only specified HTTP methods
+        credentials: true
+        // allowedHeaders: ['Content-Type'], // Allow only specified headers
+    }
+));
 
 app.use('/', Routes);
 
