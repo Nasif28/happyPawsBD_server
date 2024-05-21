@@ -12,14 +12,27 @@ dotenv.config();
 // app.use(bodyParser.json({ extended: true }));
 app.use(bodyParser.json({ limit: '5mb' }));
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cors(
-    {
-        origin: 'https://happypawsbd.vercel.app', // Allow requests from this origin
-        methods: ['GET', 'POST'],      // Allow only specified HTTP methods
-        credentials: true,
-        allowedHeaders: ['application/json'], // Allow only specified headers
-    }
-));
+const allowedOrigins = [
+    // 'https://happypawsbd.vercel.app',  // Production origin
+    'https://happypawsbd-server.onrender.com',  // Production origin
+    'http://localhost:5173'            // Development origin
+];
+
+app.use(cors({
+    origin: function (origin, callback) {
+        // Allow requests with no origin (like mobile apps or curl requests)
+        if (!origin) return callback(null, true);
+
+        if (allowedOrigins.indexOf(origin) === -1) {
+            const msg = `The CORS policy for this site does not allow access from the specified origin: ${origin}`;
+            return callback(new Error(msg), false);
+        }
+        return callback(null, true);
+    },
+    methods: ['GET', 'POST'],      // Allow only specified HTTP methods
+    credentials: true,
+    allowedHeaders: ['Content-Type', 'Authorization'], // Allow only specified headers
+}));
 
 app.use('/', Routes);
 
