@@ -13,7 +13,7 @@ dotenv.config();
 app.use(bodyParser.json({ limit: '5mb' }));
 app.use(bodyParser.urlencoded({ extended: true }));
 const allowedOrigins = [
-    // 'https://happypawsbd.vercel.app',  // Production origin
+    'https://happypawsbd.vercel.app',  // Production origin
     'https://happypawsbd-server.onrender.com',  // Production origin
     'http://localhost:5173'            // Development origin
 ];
@@ -36,7 +36,8 @@ app.use(cors({
 
 app.use('/', Routes);
 
-const PORT = '5000';
+const PORT = process.env.PORT || 5000;
+const HOST = '0.0.0.0';  // Ensures the server is accessible from outside the local environment
 const USERNAME = process.env.DB_USERNAME;
 const PASSWORD = process.env.DB_PASSWORD;
 
