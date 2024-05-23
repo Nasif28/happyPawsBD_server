@@ -14,7 +14,7 @@ app.use(bodyParser.json({ limit: '5mb' }));
 app.use(bodyParser.urlencoded({ extended: true }));
 const allowedOrigins = [
     // 'https://happypawsbd.vercel.app',  // Production origin
-    'https://happypawsbd-server.onrender.com',  // Production origin
+    'https://happypawsbd.onrender.com',  // Production origin
     'http://localhost:5173'            // Development origin
 ];
 
