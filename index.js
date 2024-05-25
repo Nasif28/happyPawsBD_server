@@ -43,4 +43,8 @@ const PASSWORD = process.env.DB_PASSWORD;
 
 Connection(USERNAME, PASSWORD);
 
+app.get('/', (req, res) => {
+    res.send('Hello Paws!')
+})
+
 app.listen(PORT, HOST, () => console.log(`Happy Paws BD Server is running successfully on PORT ${PORT} & HOST ${HOST}`));
