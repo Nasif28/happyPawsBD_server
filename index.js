@@ -13,9 +13,8 @@ dotenv.config();
 app.use(bodyParser.json({ limit: '5mb' }));
 app.use(bodyParser.urlencoded({ extended: true }));
 const allowedOrigins = [
-    // 'https://happypawsbd.vercel.app',  // Production origin
     'https://happypawsbd.onrender.com',  // Production origin
-    'http://localhost:5173'            // Development origin
+    // 'http://localhost:5173'            // Development origin
 ];
 
 app.use(cors({
@@ -29,7 +28,7 @@ app.use(cors({
         }
         return callback(null, true);
     },
-    methods: ['GET', 'POST'],      // Allow only specified HTTP methods
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],      // Allow only specified HTTP methods
     credentials: true,
     allowedHeaders: ['Content-Type', 'Authorization'], // Allow only specified headers
 }));
@@ -42,6 +41,9 @@ const USERNAME = process.env.DB_USERNAME;
 const PASSWORD = process.env.DB_PASSWORD;
 
 Connection(USERNAME, PASSWORD);
+
+// Or if you have an "images" directory
+// app.use('/images', express.static(path.join(__dirname, 'images')));
 
 app.get('/', (req, res) => {
     res.send('Hello Paws!')
