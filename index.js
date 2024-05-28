@@ -12,26 +12,35 @@ dotenv.config();
 // app.use(bodyParser.json({ extended: true }));
 app.use(bodyParser.json({ limit: '5mb' }));
 app.use(bodyParser.urlencoded({ extended: true }));
-const allowedOrigins = [
-    'https://happypawsbd.onrender.com',  // Production origin
-    // 'http://localhost:5173'            // Development origin
-];
+// const allowedOrigins = [
+//     // 'https://happypawsbd-server.onrender.com',  // Production origin
+//     // 'https://happypawsbd.onrender.com',  // Production origin
+//     'http://localhost:5173'            // Development origin
+// ];
 
+// app.use(cors({
+//     origin: function (origin, callback) {
+//         // Allow requests with no origin (like mobile apps or curl requests)
+//         if (!origin) return callback(null, true);
+
+//         if (allowedOrigins.indexOf(origin) === -1) {
+//             const msg = `The CORS policy for this site does not allow access from the specified origin: ${origin}`;
+//             return callback(new Error(msg), false);
+//         }
+//         return callback(null, true);
+//     },
+//     methods: ['GET', 'POST', 'PUT', 'DELETE'],      // Allow only specified HTTP methods
+//     credentials: true,
+//     allowedHeaders: ['Content-Type', 'Authorization'], // Allow only specified headers
+// }));
+
+// Configure CORS
 app.use(cors({
-    origin: function (origin, callback) {
-        // Allow requests with no origin (like mobile apps or curl requests)
-        if (!origin) return callback(null, true);
-
-        if (allowedOrigins.indexOf(origin) === -1) {
-            const msg = `The CORS policy for this site does not allow access from the specified origin: ${origin}`;
-            return callback(new Error(msg), false);
-        }
-        return callback(null, true);
-    },
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],      // Allow only specified HTTP methods
-    credentials: true,
-    allowedHeaders: ['Content-Type', 'Authorization'], // Allow only specified headers
-}));
+    origin: 'http://localhost:5173', // Allow requests from this origin
+    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed methods
+    allowedHeaders: ['Content-Type', 'Authorization'], // Allowed headers
+    credentials: true // Allow credentials (e.g., cookies, authorization headers)
+  }));
 
 app.use('/', Routes);
 
