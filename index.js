@@ -14,7 +14,7 @@ app.use(bodyParser.json({ limit: '5mb' }));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // Define the allowed origins
-const allowedOrigins = ['http://localhost:5173', 'https://happypawsbd.onrender.com'];
+const allowedOrigins = ['http://localhost:5173', 'https://happypawsbd.onrender.com', 'https://happypawsbd.vercel.app'];
 
 // Configure CORS
 app.use(cors({
