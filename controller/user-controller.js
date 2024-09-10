@@ -3,6 +3,8 @@ import {
   PostFoundPet,
   AdoptionApplication,
   TrainingEnrollment,
+  GroomingEnrollment,
+  BoardingEnrollment,
 } from "../model/Schema.js";
 
 // Post lostPet in database
@@ -64,41 +66,8 @@ export const addAdoptionApplication = async (request, response) => {
   }
 };
 
-// // Post Training Application in database
-// export const addTrainingEnrollment = async (request, response) => {
-//   const trainingEnrollment = request.body;
-//   const newTrainingEnrollment = new TrainingEnrollment(trainingEnrollment);
-
-//   try {
-//     await newTrainingEnrollment.save();
-//     response.status(201).json(newTrainingEnrollment);
-//   } catch (error) {
-//     response.status(409).json({ message: error.message });
-//   }
-// };
-
-// export const addTrainingEnrollment = async (request, response) => {
-//   // Extract the programId from the URL
-//   const { id } = request.params;
-
-//   // Combine request body and programId from the URL
-//   const trainingEnrollment = {
-//     ...request.body,
-//     programId: id, // Set programId to the value from the URL
-//   };
-
-//   const newTrainingEnrollment = new TrainingEnrollment(trainingEnrollment);
-
-//   try {
-//     await newTrainingEnrollment.save();
-//     response.status(201).json(newTrainingEnrollment);
-//   } catch (error) {
-//     response.status(409).json({ message: error.message });
-//   }
-// };
-
+// Post Training Enrollment in database
 export const addTrainingEnrollment = async (request, response) => {
-  console.log("Incoming request to /training/:id");
   const trainingEnrollment = request.body;
   const newTrainingEnrollment = new TrainingEnrollment(trainingEnrollment);
 
@@ -110,4 +79,29 @@ export const addTrainingEnrollment = async (request, response) => {
     response.status(409).json({ message: error.message });
   }
 };
+// Post Grooming Enrollment in database
+export const addGroomingEnrollment = async (request, response) => {
+  const groomingEnrollment = request.body;
+  const newGroomingEnrollment = new GroomingEnrollment(groomingEnrollment);
 
+  try {
+    await newGroomingEnrollment.save();
+    response.status(201).json(newGroomingEnrollment);
+  } catch (error) {
+    console.error("Error:", error);
+    response.status(409).json({ message: error.message });
+  }
+};
+// Post Boarding Enrollment in database
+export const addBoardingEnrollment = async (request, response) => {
+  const boardingEnrollment = request.body;
+  const newBoardingEnrollment = new BoardingEnrollment(boardingEnrollment);
+
+  try {
+    await newBoardingEnrollment.save();
+    response.status(201).json(newBoardingEnrollment);
+  } catch (error) {
+    console.error("Error:", error);
+    response.status(409).json({ message: error.message });
+  }
+};

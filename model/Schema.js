@@ -34,10 +34,7 @@ const foundPetSchema = mongoose.Schema({
 // Adoption Post Form Data Schema
 const adoptionSchema = mongoose.Schema({
   animalCode: { type: String, required: true },
-  // animalName: { type: String, required: true },
   animalType: { type: String, required: true },
-  // breed: String,
-  // gender: { type: String, required: true },
   adopterName: { type: String, required: true },
   contactPhone: { type: String, required: true },
   contactEmail: String,
@@ -49,13 +46,42 @@ const adoptionSchema = mongoose.Schema({
 const trainingSchema = mongoose.Schema({
   name: { type: String, required: true },
   contactEmail: String,
-  contactPhone: { type: String, required: true },
+  contactPhone: { type: Number, required: true },
   address: { type: String, required: true },
-  programId: { type: Number, required: true }, // programId field
+  programId: { type: Number, required: true },
+});
+
+// Grooming Application Form Data Schema
+const groomingSchema = mongoose.Schema({
+  name: { type: String, required: true },
+  contactEmail: String,
+  contactPhone: { type: Number, required: true },
+  address: { type: String, required: true },
+  programId: { type: Number, required: true },
+});
+
+// Boarding Application Form Data Schema
+const boardingSchema = mongoose.Schema({
+  name: { type: String, required: true },
+  contactEmail: String,
+  contactPhone: { type: Number, required: true },
+  address: { type: String, required: true },
+  programId: { type: Number, required: true },
 });
 
 // Schema to model
 export const PostLostPet = mongoose.model("lostPet", lostPetSchema);
 export const PostFoundPet = mongoose.model("foundPet", foundPetSchema);
 export const AdoptionApplication = mongoose.model("adoption", adoptionSchema);
-export const TrainingEnrollment = mongoose.model("TrainingEnrollment", trainingSchema);
+export const TrainingEnrollment = mongoose.model(
+  "TrainingEnrollment",
+  trainingSchema
+);
+export const GroomingEnrollment = mongoose.model(
+  "GroomingEnrollment",
+  groomingSchema
+);
+export const BoardingEnrollment = mongoose.model(
+  "BoardingEnrollment",
+  boardingSchema
+);
