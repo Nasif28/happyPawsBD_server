@@ -62,6 +62,7 @@ export const addAdoptionApplication = async (request, response) => {
     await newAdoptionApplication.save();
     response.status(201).json(newAdoptionApplication);
   } catch (error) {
+    console.error("Error:", error);
     response.status(409).json({ message: error.message });
   }
 };

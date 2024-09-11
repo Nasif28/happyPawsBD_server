@@ -31,13 +31,13 @@ const foundPetSchema = mongoose.Schema({
   petPicture: { type: String, required: true },
 });
 
-// Adoption Post Form Data Schema
+// Adoption Application Form Data Schema
 const adoptionSchema = mongoose.Schema({
   animalCode: { type: String, required: true },
   animalType: { type: String, required: true },
   adopterName: { type: String, required: true },
-  contactPhone: { type: String, required: true },
   contactEmail: String,
+  contactPhone: { type: String, required: true },
   address: { type: String, required: true },
   experience: { type: String, required: false },
 });
