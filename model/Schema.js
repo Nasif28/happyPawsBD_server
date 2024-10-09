@@ -4,9 +4,7 @@ import mongoose from "mongoose";
 const lostPetSchema = mongoose.Schema({
   petName: { type: String, required: true },
   animalType: { type: String, required: true },
-  age: String,
   colors: { type: String, required: true },
-  gender: { type: String, required: true },
   ownerName: { type: String, required: true },
   contactPhone: { type: String, required: true },
   contactEmail: String,

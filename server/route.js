@@ -22,5 +22,3 @@ router.post("/petcare/grooming/:id", addGroomingEnrollment);
 router.post("/petcare/boarding/:id", addBoardingEnrollment);
 
 export default router;
-
-// Need to add more routes
