@@ -1,4 +1,10 @@
 import {
+  boardingConfirmationEmail,
+  groomingConfirmationEmail,
+  sendAdoptionConfirmationEmail,
+  trainingConfirmationEmail,
+} from "../helper/mailer.js";
+import {
   PostLostPet,
   PostFoundPet,
   AdoptionApplication,
@@ -60,6 +66,17 @@ export const addAdoptionApplication = async (request, response) => {
 
   try {
     await newAdoptionApplication.save();
+    await sendAdoptionConfirmationEmail(
+      adoptionApplication.contactEmail, // User email
+      adoptionApplication.adopterName,
+      adoptionApplication.contactEmail,
+      adoptionApplication.contactPhone,
+      adoptionApplication.address,
+      adoptionApplication.experience,
+      adoptionApplication.animalCode,
+      adoptionApplication.animalType
+    );
+
     response.status(201).json(newAdoptionApplication);
   } catch (error) {
     console.error("Error:", error);
@@ -70,36 +87,47 @@ export const addAdoptionApplication = async (request, response) => {
 // Post Training Enrollment in database
 export const addTrainingEnrollment = async (request, response) => {
   const trainingEnrollment = request.body;
+  const { name, contactEmail, address, programId } = trainingEnrollment;
   const newTrainingEnrollment = new TrainingEnrollment(trainingEnrollment);
 
   try {
     await newTrainingEnrollment.save();
+    await trainingConfirmationEmail(contactEmail, name, address, programId);
+
     response.status(201).json(newTrainingEnrollment);
   } catch (error) {
     console.error("Error:", error);
     response.status(409).json({ message: error.message });
   }
 };
+
 // Post Grooming Enrollment in database
 export const addGroomingEnrollment = async (request, response) => {
   const groomingEnrollment = request.body;
+  const { name, contactEmail, address, programId } = groomingEnrollment;
   const newGroomingEnrollment = new GroomingEnrollment(groomingEnrollment);
 
   try {
     await newGroomingEnrollment.save();
+    await groomingConfirmationEmail(contactEmail, name, address, programId);
+
     response.status(201).json(newGroomingEnrollment);
   } catch (error) {
     console.error("Error:", error);
     response.status(409).json({ message: error.message });
   }
 };
+
 // Post Boarding Enrollment in database
 export const addBoardingEnrollment = async (request, response) => {
   const boardingEnrollment = request.body;
+  const { name, contactEmail, address, programId } = boardingEnrollment;
   const newBoardingEnrollment = new BoardingEnrollment(boardingEnrollment);
 
   try {
     await newBoardingEnrollment.save();
+    await boardingConfirmationEmail(contactEmail, name, address, programId);
+
     response.status(201).json(newBoardingEnrollment);
   } catch (error) {
     console.error("Error:", error);

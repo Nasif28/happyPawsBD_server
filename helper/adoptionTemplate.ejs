@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adoption Application Confirmation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
+        h2 {
+            color: #4CAF50;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Adoption Application Confirmation</h2>
+    <p>Dear <strong>
+            <%= adopterName %>
+        </strong>,</p>
+    <p>Thank you for applying to adopt <strong>
+            <%= animalType %>
+        </strong> with the code <strong>
+            <%= animalCode %>
+        </strong>.</p>
+    <p>Your application details are as follows:</p>
+    <ul>
+        <li><strong>Name:</strong>
+            <%= adopterName %>
+        </li>
+        <li><strong>Email:</strong>
+            <%= contactEmail %>
+        </li>
+        <li><strong>Phone:</strong>
+            <%= contactPhone %>
+        </li>
+        <li><strong>Address:</strong>
+            <%= address %>
+        </li>
+        <li><strong>Experience:</strong>
+            <%= experience %>
+        </li>
+    </ul>
+    <p>We will review your application and get back to you shortly.</p>
+    <p>Best regards,<br>Your Adoption Team</p>
+</body>
+
+</html>
