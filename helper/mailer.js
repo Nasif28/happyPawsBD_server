@@ -14,8 +14,10 @@ const transporter = nodemailer.createTransport({
   auth: {
     // user: process.env.EMAIL_USER,
     // pass: process.env.EMAIL_PASS,
-    user: "nasifzeehan1@gmail.com",
-    pass: "xirikbpviwvvlueu",
+    // user: "nasifzeehan1@gmail.com",
+    user: "hasansajid121998@gmail.com",
+    // pass: "xirikbpviwvvlueu",
+    pass: "msshoypurlgmjwvh",
   },
 });
 
@@ -37,7 +39,8 @@ export const groomingConfirmationEmail = async (
     });
 
     const mailOptions = {
-      from: "nasifzeehan1@gmail.com",
+      // from: "nasifzeehan1@gmail.com",
+      from: "hasansajid121998@gmail.com",
       to: userEmail,
       subject: "Grooming Program Confirmation",
       html: htmlContent,
@@ -70,7 +73,8 @@ export const boardingConfirmationEmail = async (
     });
 
     const mailOptions = {
-      from: "nasifzeehan1@gmail.com",
+      // from: "nasifzeehan1@gmail.com",
+      from: "hasansajid121998@gmail.com",
       to: userEmail,
       subject: "Boarding Program Confirmation",
       html: htmlContent,
@@ -103,7 +107,8 @@ export const trainingConfirmationEmail = async (
     });
 
     const mailOptions = {
-      from: "nasifzeehan1@gmail.com",
+      // from: "nasifzeehan1@gmail.com",
+      from: "hasansajid121998@gmail.com",
       to: userEmail,
       subject: "Training Program Confirmation",
       html: htmlContent,
@@ -142,7 +147,8 @@ export const sendAdoptionConfirmationEmail = async (
     });
 
     const mailOptions = {
-      from: "nasifzeehan1@gmail.com",
+      // from: "nasifzeehan1@gmail.com",
+      from: "hasansajid121998@gmail.com",
       to: userEmail,
       subject: "Adoption Application Confirmation",
       html: htmlContent,
