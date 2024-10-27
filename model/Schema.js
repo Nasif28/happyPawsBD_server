@@ -22,7 +22,6 @@ const foundPetSchema = mongoose.Schema({
   gender: { type: String, required: true },
   founderName: { type: String, required: true },
   contactPhone: { type: String, required: true },
-  contactEmail: String,
   foundLocation: { type: String, required: true },
   foundDate: { type: String, required: true },
   description: { type: String, required: true },

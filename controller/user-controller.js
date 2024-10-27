@@ -15,13 +15,16 @@ import {
 
 // Post lostPet in database
 export const addLostPet = async (request, response) => {
-  const lostPets = request.body;
-  const newPostLostPet = new PostLostPet(lostPets);
-
   try {
+    const lostPetData = request.body;
+    if (request.file && request.file.path) {
+      lostPetData.petPicture = request.file.path;
+    }
+    const newPostLostPet = new PostLostPet(lostPetData);
     await newPostLostPet.save();
     response.status(201).json(newPostLostPet);
   } catch (error) {
+    console.error("Error in addLostPet:", error);
     response.status(409).json({ message: error.message });
   }
 };
@@ -38,13 +41,16 @@ export const getLostPets = async (request, response) => {
 
 // Post foundPet in database
 export const addFoundPet = async (request, response) => {
-  const foundPet = request.body;
-  const newPostFoundPet = new PostFoundPet(foundPet);
-
   try {
+    const foundPetData = request.body;
+    if (request.file && request.file.path) {
+      foundPetData.petPicture = request.file.path;
+    }
+    const newPostFoundPet = new PostFoundPet(foundPetData);
     await newPostFoundPet.save();
     response.status(201).json(newPostFoundPet);
   } catch (error) {
+    console.error("Error in addFoundPet:", error);
     response.status(409).json({ message: error.message });
   }
 };
