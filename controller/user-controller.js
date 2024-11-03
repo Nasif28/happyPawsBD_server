@@ -11,6 +11,7 @@ import {
   TrainingEnrollment,
   GroomingEnrollment,
   BoardingEnrollment,
+  Orders,
 } from "../model/Schema.js";
 
 // Post lostPet in database
@@ -138,5 +139,25 @@ export const addBoardingEnrollment = async (request, response) => {
   } catch (error) {
     console.error("Error:", error);
     response.status(409).json({ message: error.message });
+  }
+};
+
+export const createOrder = async (req, res) => {
+  const { deliveryInfo, orderSummary, paymentMethod } = req.body;
+
+  try {
+    const newOrder = new Orders({
+      deliveryInfo,
+      orderSummary,
+      paymentMethod,
+    });
+
+    const savedOrder = await newOrder.save();
+    res
+      .status(201)
+      .json({ message: "Order created successfully", order: savedOrder });
+  } catch (error) {
+    console.error("Error creating order:", error);
+    res.status(500).json({ message: "Internal server error", error });
   }
 };

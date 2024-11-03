@@ -66,6 +66,31 @@ const boardingSchema = mongoose.Schema({
   programId: { type: Number, required: true },
 });
 
+const OrderSchema = mongoose.Schema({
+  deliveryInfo: {
+    name: { type: String, required: true },
+    email: { type: String, required: true },
+    phone: { type: Number, required: true },
+    city: { type: String },
+    state: { type: String },
+    zip: { type: String },
+    address: { type: String, required: true },
+  },
+  orderSummary: {
+    items: [
+      {
+        id: { type: String, required: true },
+        name: { type: String, required: true },
+        price: { type: Number, required: true },
+        quantity: { type: Number, required: true },
+      },
+    ],
+    total: { type: Number, required: true },
+  },
+  paymentMethod: { type: String, required: true },
+  // createdAt: { type: Date, default: Date.now },
+});
+
 // Schema to model
 export const PostLostPet = mongoose.model("lostPet", lostPetSchema);
 export const PostFoundPet = mongoose.model("foundPet", foundPetSchema);
@@ -82,3 +107,4 @@ export const BoardingEnrollment = mongoose.model(
   "BoardingEnrollment",
   boardingSchema
 );
+export const Orders = mongoose.model("Order", OrderSchema);

@@ -8,6 +8,7 @@ import {
   addTrainingEnrollment,
   addGroomingEnrollment,
   addBoardingEnrollment,
+  createOrder,
 } from "../controller/user-controller.js";
 import { uploadFoundPets, uploadLostPets } from "../utils/cloudnary.js";
 
@@ -29,5 +30,6 @@ router.post("/adoption/adoptable_pets/:code", addAdoptionApplication);
 router.post("/training/:id", addTrainingEnrollment);
 router.post("/petcare/grooming/:id", addGroomingEnrollment);
 router.post("/petcare/boarding/:id", addBoardingEnrollment);
+router.post("/cart/orders", createOrder);
 
 export default router;
