@@ -186,13 +186,13 @@ export const createPayment = async (req, res) => {
         price_data: {
           currency: "usd",
           product_data: { name: item.id },
-          unit_amount: item.price * 100, // Convert to cents
+          unit_amount: item.price, 
         },
         quantity: item.quantity,
       })),
       mode: "payment",
-      success_url: "http://https://happypawsbd.onrender.com/shop",
-      cancel_url: "http://https://happypawsbd.onrender.com/shop",
+      success_url: "https://happypawsbd.onrender.com/shop",
+      cancel_url: "https://happypawsbd.onrender.com/shop",
     });
 
     res.status(200).json({ sessionId: session.id });
