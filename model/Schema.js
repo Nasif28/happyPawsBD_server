@@ -68,26 +68,28 @@ const boardingSchema = mongoose.Schema({
 
 const OrderSchema = mongoose.Schema({
   deliveryInfo: {
-    name: { type: String, required: true },
-    email: { type: String, required: true },
-    phone: { type: Number, required: true },
+    name: { type: String },
+    email: { type: String },
+    phone: { type: Number },
     city: { type: String },
     state: { type: String },
     zip: { type: String },
-    address: { type: String, required: true },
+    address: { type: String },
   },
   orderSummary: {
     items: [
       {
-        id: { type: String, required: true },
-        name: { type: String, required: true },
-        price: { type: Number, required: true },
-        quantity: { type: Number, required: true },
+        id: { type: String },
+        name: { type: String },
+        price: { type: Number },
+        quantity: { type: Number },
       },
     ],
-    total: { type: Number, required: true },
+    total: { type: Number },
   },
-  paymentMethod: { type: String, required: true },
+  paymentMethod: { type: String },
+  // paymentMethod: { type: String, enum: ['online_payment', 'cash_on_delivery'] },
+  // orderDate: { type: Date, default: Date.now },
   // createdAt: { type: Date, default: Date.now },
 });
 

@@ -1,3 +1,4 @@
+import Stripe from "stripe";
 import {
   boardingConfirmationEmail,
   groomingConfirmationEmail,
@@ -13,6 +14,10 @@ import {
   BoardingEnrollment,
   Orders,
 } from "../model/Schema.js";
+import dotenv from "dotenv";
+dotenv.config();
+
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 // Post lostPet in database
 export const addLostPet = async (request, response) => {
@@ -142,6 +147,7 @@ export const addBoardingEnrollment = async (request, response) => {
   }
 };
 
+// Shop Order
 export const createOrder = async (req, res) => {
   const { deliveryInfo, orderSummary, paymentMethod } = req.body;
 
@@ -159,5 +165,39 @@ export const createOrder = async (req, res) => {
   } catch (error) {
     console.error("Error creating order:", error);
     res.status(500).json({ message: "Internal server error", error });
+  }
+};
+
+// Stripe Payment Gateway Sandbox Intregation
+export const createPayment = async (req, res) => {
+  const { items, deliveryInfo } = req.body;
+  console.log(items);
+  try {
+    items.forEach((item) => {
+      console.log(item);
+      if (isNaN(item.price) || item.price <= 0) {
+        throw new Error(`Invalid price for item: ${item.id}`);
+      }
+    });
+
+    const session = await stripe.checkout.sessions.create({
+      payment_method_types: ["card"],
+      line_items: items.map((item) => ({
+        price_data: {
+          currency: "usd",
+          product_data: { name: item.id },
+          unit_amount: item.price * 100, // Convert to cents
+        },
+        quantity: item.quantity,
+      })),
+      mode: "payment",
+      success_url: "http://https://happypawsbd.onrender.com/shop",
+      cancel_url: "http://https://happypawsbd.onrender.com/shop",
+    });
+
+    res.status(200).json({ sessionId: session.id });
+  } catch (error) {
+    console.error("Error creating Stripe session:", error);
+    res.status(500).json({ error: "Failed to create payment session" });
   }
 };

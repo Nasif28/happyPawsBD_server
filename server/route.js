@@ -9,6 +9,7 @@ import {
   addGroomingEnrollment,
   addBoardingEnrollment,
   createOrder,
+  createPayment,
 } from "../controller/user-controller.js";
 import { uploadFoundPets, uploadLostPets } from "../utils/cloudnary.js";
 
@@ -31,5 +32,6 @@ router.post("/training/:id", addTrainingEnrollment);
 router.post("/petcare/grooming/:id", addGroomingEnrollment);
 router.post("/petcare/boarding/:id", addBoardingEnrollment);
 router.post("/cart/orders", createOrder);
+router.post("/cart/orders/create-payment", createPayment);
 
 export default router;
