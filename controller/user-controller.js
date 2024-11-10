@@ -17,7 +17,7 @@ import {
 import dotenv from "dotenv";
 dotenv.config();
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
 
 // Post lostPet in database
 export const addLostPet = async (request, response) => {
