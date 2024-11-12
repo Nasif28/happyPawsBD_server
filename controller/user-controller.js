@@ -184,9 +184,9 @@ export const createPayment = async (req, res) => {
       payment_method_types: ["card"],
       line_items: items.map((item) => ({
         price_data: {
-          currency: "usd",
+          currency: "bdt",
           product_data: { name: item.id },
-          unit_amount: item.price, 
+          unit_amount: Math.round(item.price * 100),
         },
         quantity: item.quantity,
       })),
